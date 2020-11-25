@@ -1,9 +1,8 @@
 package ventanas;
 
-import javax.swing.*;
 import java.awt.*;
 
-public class Tarea extends Screen {
+public class Tarea extends Pantalla {
 
     public Tarea(Container container) {
         super(container);
@@ -63,8 +62,9 @@ public class Tarea extends Screen {
 
         infomacion_tarea1.setEditable(false);
         infomacion_tarea1.setColumns(20);
-        infomacion_tarea1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        infomacion_tarea1.setFont(new java.awt.Font("Arial", 0, 18));
         infomacion_tarea1.setRows(5);
+        infomacion_tarea1.setText("\\n\\nSembraremos yuca a principios de primavera. Quizás \\n\\nla forma más efectiva de sembrar desde semilla es en \\n\\ninteriores, para proteger del frío invernal o primaveral.");
         jScrollPane1.setViewportView(infomacion_tarea1);
 
         informacion_tarea1.setEditable(false);

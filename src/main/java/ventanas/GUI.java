@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class GUI extends JFrame {
 
@@ -14,34 +12,51 @@ public class GUI extends JFrame {
     ListaProyectos listaProyectos;
     PanelPrincipal panelPrincipal;
     Tarea tarea;
+    Ayuda ayuda;
+    AcercaDe acercade;
+    Registro registro;
     ProyectoNuevo proyectoNuevo;
 
     public GUI() {
+
         crearVentanas();
         crearMenu();
-
+        crearAccionesMenu();
 
         add(panelPrincipal);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setLocationByPlatform(true);
         setVisible(true);
+        this.setTitle(" Sembrando futuro ");
+
 
     }
 
     private void crearVentanas() {
+
         cardLayout = new CardLayout();
+
         panelPrincipal = new PanelPrincipal(cardLayout);
 
-        login = new Login(getContentPane());
         listaProyectos = new ListaProyectos(getContentPane());
+        login = new Login(getContentPane());
         tarea = new Tarea(getContentPane());
+        ayuda = new Ayuda(getContentPane());
         proyectoNuevo = new ProyectoNuevo(getContentPane());
+        registro = new Registro(getContentPane());
+        acercade = new AcercaDe(getContentPane());
 
-        panelPrincipal.addScreen(login, "login");
-        panelPrincipal.addScreen(listaProyectos, "lista_proyectos");
-        panelPrincipal.addScreen(tarea,"tarea");
-        panelPrincipal.addScreen(proyectoNuevo, "proyecto_nuevo");
+
+        panelPrincipal.addScreen(login, VentanasConstantes.NOMBRE_VISTA_LOGIN);
+        panelPrincipal.addScreen(proyectoNuevo, VentanasConstantes.NOMBRE_VISTA_PROYECTO_NUEVO);
+        panelPrincipal.addScreen(listaProyectos, VentanasConstantes.NOMBRE_VISTA_LISTA_PROYECTOS);
+        panelPrincipal.addScreen(tarea, VentanasConstantes.NOMBRE_VISTA_TAREAS);
+        panelPrincipal.addScreen(ayuda, VentanasConstantes.NOMBRE_VISTA_AYUDA);
+        panelPrincipal.addScreen(acercade, VentanasConstantes.NOMBRE_VISTA_ACERCA_DE);
+        panelPrincipal.addScreen(registro, VentanasConstantes.NOMBRE_VISTA_REGISTRO);
+
+        cardLayout.show(panelPrincipal, VentanasConstantes.NOMBRE_VISTA_LOGIN);
 
     }
 
@@ -51,80 +66,95 @@ public class GUI extends JFrame {
         menu_crear = new JMenu();
         menu_ver = new JMenu();
         menu_ayuda = new JMenu();
-        ayuda = new JMenuItem();
+        ayuda_ = new JMenuItem();
         separador_crear = new JPopupMenu.Separator();
         proyecto_nuevo = new JMenuItem();
         agregar_recordatorios = new JMenuItem();
         lista_proyectos = new JMenuItem();
+        separador_tareas = new JPopupMenu.Separator();
+        tareas = new JMenuItem();
         separador_ver = new JPopupMenu.Separator();
         recordatorios = new JMenuItem();
         separador_ayuda = new JPopupMenu.Separator();
-        jMenuItem1 = new JMenuItem();
+        acerca_de = new JMenuItem();
 
         menu_crear.setText("Crear          ");
         menu_crear.setToolTipText("");
         menu_crear.setActionCommand("menu_crear");
 
-
         proyecto_nuevo.setText("Proyecto Nuevo");
+
         menu_crear.add(proyecto_nuevo);
         menu_crear.add(separador_crear);
-
         agregar_recordatorios.setText("Agregar Recordatorios");
         menu_crear.add(agregar_recordatorios);
-
         menu.add(menu_crear);
-
         menu_ver.setText("Ver          ");
-
         lista_proyectos.setText("Lista de Proyectos");
-        lista_proyectos.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt) {
-                lista_proyectosMouseClicked(evt);
-            }
-        });
-        lista_proyectos.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                lista_proyectosActionPerformed(evt);
-            }
-        });
-        
         menu_ver.add(lista_proyectos);
         menu_ver.add(separador_ver);
-
         recordatorios.setText("Recordatorios");
         menu_ver.add(recordatorios);
-
         menu.add(menu_ver);
-
+        menu_ver.add(separador_tareas);
+        menu_ver.add(tareas);
+        tareas.setText("Tareas");
         menu_ayuda.setText("Ayuda          ");
-
-        ayuda.setText("Ayuda");
-        menu_ayuda.add(ayuda);
+        ayuda_.setText("Ayuda");
+        menu_ayuda.add(ayuda_);
         menu_ayuda.add(separador_ayuda);
-
-        jMenuItem1.setText("Acerca de ...");
-        menu_ayuda.add(jMenuItem1);
-
+        acerca_de.setText("Acerca de ...");
+        menu_ayuda.add(acerca_de);
         menu.add(menu_ayuda);
-
         setJMenuBar(menu);
     }
 
-    private void lista_proyectosActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
 
-    private void lista_proyectosMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
-    }
+    private void crearAccionesMenu() {
+        proyecto_nuevo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(panelPrincipal, VentanasConstantes.NOMBRE_VISTA_PROYECTO_NUEVO);
+            }
+        });
 
+        lista_proyectos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(panelPrincipal, VentanasConstantes.NOMBRE_VISTA_LISTA_PROYECTOS);
+            }
+        });
+
+        tareas.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(panelPrincipal, VentanasConstantes.NOMBRE_VISTA_TAREAS);
+            }
+        });
+
+        ayuda_.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(panelPrincipal, VentanasConstantes.NOMBRE_VISTA_AYUDA);
+            }
+        });
+
+        acerca_de.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(panelPrincipal, VentanasConstantes.NOMBRE_VISTA_ACERCA_DE);
+            }
+        });
+
+
+    }
 
 
     private javax.swing.JMenuItem agregar_recordatorios;
-    private javax.swing.JMenuItem ayuda;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem ayuda_;
+    private javax.swing.JMenuItem acerca_de;
     private javax.swing.JMenuItem lista_proyectos;
+    private javax.swing.JMenuItem tareas;
     private javax.swing.JMenuBar menu;
     private javax.swing.JMenu menu_ayuda;
     private javax.swing.JMenu menu_crear;
@@ -134,4 +164,5 @@ public class GUI extends JFrame {
     private javax.swing.JPopupMenu.Separator separador_ayuda;
     private javax.swing.JPopupMenu.Separator separador_crear;
     private javax.swing.JPopupMenu.Separator separador_ver;
+    private javax.swing.JPopupMenu.Separator separador_tareas;
 }
