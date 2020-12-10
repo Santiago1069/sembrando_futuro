@@ -1,14 +1,14 @@
 package modelos;
 
-public class Usuario {
+public class RegistroUsuario {
 
-    String nombre;
-    String apellidos;
-    String identificacion;
-    String correo;
-    String contrasena;
+    private String nombre;
+    private String apellidos;
+    private String identificacion;
+    private String correo;
+    private String contrasena;
 
-    public Usuario(String nombre, String apellidos, String identificacion, String correo, String contrasena) {
+    public RegistroUsuario(String nombre, String apellidos, String identificacion, String correo, String contrasena) {
 
         setNombre(nombre);
         setApellido(apellidos);
@@ -18,6 +18,7 @@ public class Usuario {
     }
 
     private void setContrasena(String contrasena) {
+
         if(contrasena == null || contrasena.isEmpty()){
             throw new IllegalArgumentException("La contraseña del registro es requerido");
         }
@@ -81,4 +82,23 @@ public class Usuario {
 
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public String getIdentificacion() {
+        return identificacion;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
 }

@@ -1,7 +1,7 @@
 package ventanas;
 
 import almacenamiento.RepositorioUsuario;
-import modelos.Usuario;
+import modelos.RegistroUsuario;
 
 import javax.swing.*;
 import java.awt.*;
@@ -89,6 +89,7 @@ public class Registro extends Pantalla {
 
         boton_resgitro.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         boton_resgitro.setText("Registrarse ");
+
         boton_resgitro.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -196,15 +197,22 @@ public class Registro extends Pantalla {
         String contrasena = input_contrasena.getText();
 
         try{
-            Usuario usuario = new Usuario(
+
+            RegistroUsuario registroUsuario = new RegistroUsuario(
                 nombre, apellido, identificacion, correo, contrasena
             );
 
-            repositorioUsuario.guardar(usuario);
+            repositorioUsuario.guardar(registroUsuario);
+            irAVentanaCrearProyecto();
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error formulario registro", JOptionPane.ERROR_MESSAGE );
+            JOptionPane.showMessageDialog(this, " " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE );
         }
 
+    }
+
+    private void irAVentanaCrearProyecto() {
+        navigateTo(VentanasConstantes.NOMBRE_VISTA_PROYECTO_NUEVO);
     }
 
     private void input_nombreActionPerformed(java.awt.event.ActionEvent evt) {

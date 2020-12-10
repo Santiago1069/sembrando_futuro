@@ -1,17 +1,26 @@
 package ventanas;
 
+import almacenamiento.RepositorioProyecto;
 import modelos.Proyecto;
+import modelos.TipoCosecha;
 import servicios.CrearProyectoServicio;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.util.Date;
 
 public class ProyectoNuevo extends Pantalla {
 
     CrearProyectoServicio crearproyectonuevo;
+    RepositorioProyecto repositorioProyecto;
 
     public ProyectoNuevo(Container container) {
         super(container);
         iniciarComponentesP();
+        repositorioProyecto = new RepositorioProyecto();
         crearproyectonuevo = new CrearProyectoServicio();
     }
 
@@ -26,7 +35,7 @@ public class ProyectoNuevo extends Pantalla {
         nombre_creador = new javax.swing.JLabel();
         input_nombre_creador = new javax.swing.JTextField();
         titulo_fecha = new javax.swing.JLabel();
-        mostrar_fecha = new javax.swing.JFormattedTextField();
+        mostrar_fecha = new javax.swing.JTextField();
         titulo_cosecha = new javax.swing.JLabel();
         cosechas = new javax.swing.JComboBox<>();
         texto_motivacional = new javax.swing.JLabel();
@@ -52,18 +61,16 @@ public class ProyectoNuevo extends Pantalla {
         titulo_fecha.setText("Fecha Inicial:");
         titulo_fecha.setToolTipText("");
 
-        mostrar_fecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.LONG))));
-        mostrar_fecha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mostrar_fechaActionPerformed(evt);
-            }
-        });
+        mostrar_fecha.setText(new Date().toString());
+        mostrar_fecha.setEditable(false);
 
         titulo_cosecha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         titulo_cosecha.setText("Cosecha que desea realizar:");
 
         cosechas.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cosechas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yuca", "Maiz" }));
+        cosechas.setModel(new javax.swing.DefaultComboBoxModel<>(
+            new String[] { TipoCosecha.YUCA.toString(), TipoCosecha.MAIZ.toString() }
+        ));
 
         texto_motivacional.setFont(new java.awt.Font("Book Antiqua", 0, 14)); // NOI18N
         texto_motivacional.setText("\"Todas tus acciones  son una semilla, que tarde o temprano daran frutos.\"");
@@ -71,6 +78,13 @@ public class ProyectoNuevo extends Pantalla {
 
         crear_proyecto.setText("Crear Proyecto ");
         crear_proyecto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        crear_proyecto.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                registrarProyectoNuevo();
+            }});
+
 
         javax.swing.GroupLayout crearProyectoLayout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(crearProyectoLayout);
@@ -155,7 +169,29 @@ public class ProyectoNuevo extends Pantalla {
 
     }
 
-    private void mostrar_fechaActionPerformed(java.awt.event.ActionEvent evt) {
+
+    private void registrarProyectoNuevo(){
+
+        String nombre_creador = input_nombre_creador.getText();
+        String nombre_proyecto = input_proyecto_nuevo.getText();
+        LocalDate fecha = LocalDate.now();
+        String tipoCosechaNombre = (String) cosechas.getSelectedItem();
+        TipoCosecha tipoCosecha = TipoCosecha.obtenerPorNombre(tipoCosechaNombre);
+
+        try {
+
+            Proyecto proyecto = new Proyecto(nombre_proyecto, nombre_creador, tipoCosecha, fecha);
+            repositorioProyecto.guardar(proyecto);
+
+            crear_proyecto.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    navigateTo(VentanasConstantes.NOMBRE_VISTA_TAREAS);
+                }
+            });
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(this, "" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE );
+        }
 
     }
 
@@ -167,7 +203,7 @@ public class ProyectoNuevo extends Pantalla {
     private javax.swing.JTextField input_proyecto_nuevo;
     private javax.swing.JPanel jPanel3;
     private java.awt.MenuBar menuBar1;
-    private javax.swing.JFormattedTextField mostrar_fecha;
+    private javax.swing.JTextField mostrar_fecha;
     private javax.swing.JLabel nombre_creador;
     private javax.swing.JLabel nombre_proyecto;
     private javax.swing.JLabel texto_motivacional;

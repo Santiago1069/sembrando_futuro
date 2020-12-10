@@ -2,12 +2,11 @@ package ventanas;
 
 import java.awt.*;
 
-public class Tarea extends Pantalla {
+public class Tareas extends Pantalla {
 
-    public Tarea(Container container) {
+    public Tareas(Container container) {
         super(container);
         iniciarComponentesT();
-
 
     }
 
@@ -26,20 +25,9 @@ public class Tarea extends Pantalla {
         tarea2_complatada = new javax.swing.JCheckBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         informacion_tarea2 = new javax.swing.JTextArea();
-        panel_tarea3 = new javax.swing.JPanel();
-        tarea3_completada = new javax.swing.JCheckBox();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        informacion_tarea3 = new javax.swing.JTextArea();
-        panel_tarea4 = new javax.swing.JPanel();
-        tarea4_completada = new javax.swing.JCheckBox();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        informacion_tarea4 = new javax.swing.JTextArea();
-        panel_tarea5 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        informacion_tarea5 = new javax.swing.JTextArea();
-        tarea5_completada = new javax.swing.JCheckBox();
 
-        jMenu1.setText("jMenu1");
+
+
 
         panel_tareas.setBackground(new java.awt.Color(255, 255, 255));
         panel_tareas.setPreferredSize(new java.awt.Dimension(900, 485));
@@ -64,13 +52,12 @@ public class Tarea extends Pantalla {
         infomacion_tarea1.setColumns(20);
         infomacion_tarea1.setFont(new java.awt.Font("Arial", 0, 18));
         infomacion_tarea1.setRows(5);
-        infomacion_tarea1.setText("\\n\\nSembraremos yuca a principios de primavera. Quizás \\n\\nla forma más efectiva de sembrar desde semilla es en \\n\\ninteriores, para proteger del frío invernal o primaveral.");
         jScrollPane1.setViewportView(infomacion_tarea1);
 
         informacion_tarea1.setEditable(false);
         informacion_tarea1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         informacion_tarea1.setText("?");
-        informacion_tarea1.setToolTipText("Cuando ya haya terminado la tarera puedes chuliar la \npara que te acuerdes que ya terminaste la tarea.");
+        informacion_tarea1.setToolTipText("Cuando ya haya terminado la tarera puedes chuliar la para que te acuerdes que ya terminaste la tarea.");
 
         javax.swing.GroupLayout panel_tarea1Layout = new javax.swing.GroupLayout(panel_tarea1);
         panel_tarea1.setLayout(panel_tarea1Layout);
@@ -132,100 +119,6 @@ public class Tarea extends Pantalla {
 
         tareas.addTab("Tarea #2", panel_tarea2);
 
-        tarea3_completada.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tarea3_completada.setText("Tarea Completada");
-
-        informacion_tarea3.setEditable(false);
-        informacion_tarea3.setColumns(20);
-        informacion_tarea3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        informacion_tarea3.setRows(5);
-        jScrollPane3.setViewportView(informacion_tarea3);
-
-        javax.swing.GroupLayout panel_tarea3Layout = new javax.swing.GroupLayout(panel_tarea3);
-        panel_tarea3.setLayout(panel_tarea3Layout);
-        panel_tarea3Layout.setHorizontalGroup(
-                panel_tarea3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panel_tarea3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(panel_tarea3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tarea3_completada))
-                                .addContainerGap(316, Short.MAX_VALUE))
-        );
-        panel_tarea3Layout.setVerticalGroup(
-                panel_tarea3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_tarea3Layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                                .addComponent(tarea3_completada)
-                                .addContainerGap())
-        );
-
-        tareas.addTab("Tarea #3", panel_tarea3);
-
-        tarea4_completada.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tarea4_completada.setText("Tarea Completada");
-
-        informacion_tarea4.setEditable(false);
-        informacion_tarea4.setColumns(20);
-        informacion_tarea4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        informacion_tarea4.setRows(5);
-        jScrollPane4.setViewportView(informacion_tarea4);
-
-        javax.swing.GroupLayout panel_tarea4Layout = new javax.swing.GroupLayout(panel_tarea4);
-        panel_tarea4.setLayout(panel_tarea4Layout);
-        panel_tarea4Layout.setHorizontalGroup(
-                panel_tarea4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panel_tarea4Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(panel_tarea4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(tarea4_completada)
-                                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(317, Short.MAX_VALUE))
-        );
-        panel_tarea4Layout.setVerticalGroup(
-                panel_tarea4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_tarea4Layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                                .addComponent(tarea4_completada)
-                                .addContainerGap())
-        );
-
-        tareas.addTab("Tarea #4", panel_tarea4);
-
-        informacion_tarea5.setColumns(20);
-        informacion_tarea5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        informacion_tarea5.setRows(5);
-        jScrollPane5.setViewportView(informacion_tarea5);
-
-        tarea5_completada.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        tarea5_completada.setText("Tarea Completada");
-
-        javax.swing.GroupLayout panel_tarea5Layout = new javax.swing.GroupLayout(panel_tarea5);
-        panel_tarea5.setLayout(panel_tarea5Layout);
-        panel_tarea5Layout.setHorizontalGroup(
-                panel_tarea5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panel_tarea5Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(panel_tarea5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(tarea5_completada)
-                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(317, Short.MAX_VALUE))
-        );
-        panel_tarea5Layout.setVerticalGroup(
-                panel_tarea5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(panel_tarea5Layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                                .addComponent(tarea5_completada)
-                                .addContainerGap())
-        );
-
-        tareas.addTab("Tarea #5", panel_tarea5);
 
         javax.swing.GroupLayout panel_tareasLayout = new javax.swing.GroupLayout(panel_tareas);
         panel_tareas.setLayout(panel_tareasLayout);

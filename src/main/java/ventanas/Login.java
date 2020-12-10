@@ -1,14 +1,23 @@
 package ventanas;
 
+import almacenamiento.RepositorioUsuario;
+import modelos.UsuarioLogin;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Login extends Pantalla {
 
+    RepositorioUsuario repositorioUsuario;
+
+
+
     public Login(Container container) {
         super(container);
         iniciarComponentesL();
+        repositorioUsuario = new RepositorioUsuario();
 
     }
 
@@ -59,9 +68,10 @@ public class Login extends Pantalla {
                 boton_ingresarMouseClicked(evt);
             }
         });
+
         boton_ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_ingresarActionPerformed(evt);
+                verificacionDeUsuario();
             }
         });
 
@@ -152,15 +162,39 @@ public class Login extends Pantalla {
 
     }
 
+    private void verificacionDeUsuario() {
 
+        String correo = input_usuario_sesion.getText();
+        String contrasena = input_contrasena_sesion.getText();
+
+        try {
+
+            UsuarioLogin usuarioLogin = new UsuarioLogin(correo, contrasena);
+
+            boolean validacion = repositorioUsuario.verificarLogin(usuarioLogin);
+
+            if(validacion){
+
+                navigateTo(VentanasConstantes.NOMBRE_VISTA_LISTA_PROYECTOS);
+
+            }else {
+
+                JOptionPane.showMessageDialog(this, "El usuario no se encuentra registrado" , "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(this, "" + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+
+
+        }
+    }
 
     private void input_usuario_sesionActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
-    private void boton_ingresarActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
+
 
     private void boton_ingresarMouseClicked(java.awt.event.MouseEvent evt) {
 

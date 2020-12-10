@@ -11,7 +11,7 @@ public class GUI extends JFrame {
     Login login;
     ListaProyectos listaProyectos;
     PanelPrincipal panelPrincipal;
-    Tarea tarea;
+    Tareas tareas;
     Ayuda ayuda;
     AcercaDe acercade;
     Registro registro;
@@ -41,7 +41,7 @@ public class GUI extends JFrame {
 
         listaProyectos = new ListaProyectos(getContentPane());
         login = new Login(getContentPane());
-        tarea = new Tarea(getContentPane());
+        tareas = new Tareas(getContentPane());
         ayuda = new Ayuda(getContentPane());
         proyectoNuevo = new ProyectoNuevo(getContentPane());
         registro = new Registro(getContentPane());
@@ -51,7 +51,7 @@ public class GUI extends JFrame {
         panelPrincipal.addScreen(login, VentanasConstantes.NOMBRE_VISTA_LOGIN);
         panelPrincipal.addScreen(proyectoNuevo, VentanasConstantes.NOMBRE_VISTA_PROYECTO_NUEVO);
         panelPrincipal.addScreen(listaProyectos, VentanasConstantes.NOMBRE_VISTA_LISTA_PROYECTOS);
-        panelPrincipal.addScreen(tarea, VentanasConstantes.NOMBRE_VISTA_TAREAS);
+        panelPrincipal.addScreen(tareas, VentanasConstantes.NOMBRE_VISTA_TAREAS);
         panelPrincipal.addScreen(ayuda, VentanasConstantes.NOMBRE_VISTA_AYUDA);
         panelPrincipal.addScreen(acercade, VentanasConstantes.NOMBRE_VISTA_ACERCA_DE);
         panelPrincipal.addScreen(registro, VentanasConstantes.NOMBRE_VISTA_REGISTRO);
@@ -72,7 +72,7 @@ public class GUI extends JFrame {
         agregar_recordatorios = new JMenuItem();
         lista_proyectos = new JMenuItem();
         separador_tareas = new JPopupMenu.Separator();
-        tareas = new JMenuItem();
+        tareasMenu = new JMenuItem();
         separador_ver = new JPopupMenu.Separator();
         recordatorios = new JMenuItem();
         separador_ayuda = new JPopupMenu.Separator();
@@ -97,8 +97,8 @@ public class GUI extends JFrame {
         menu_ver.add(recordatorios);
         menu.add(menu_ver);
         menu_ver.add(separador_tareas);
-        menu_ver.add(tareas);
-        tareas.setText("Tareas");
+        menu_ver.add(tareasMenu);
+        tareasMenu.setText("Tareas");
         menu_ayuda.setText("Ayuda          ");
         ayuda_.setText("Ayuda");
         menu_ayuda.add(ayuda_);
@@ -125,7 +125,7 @@ public class GUI extends JFrame {
             }
         });
 
-        tareas.addActionListener(new ActionListener() {
+        tareasMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(panelPrincipal, VentanasConstantes.NOMBRE_VISTA_TAREAS);
@@ -154,7 +154,7 @@ public class GUI extends JFrame {
     private javax.swing.JMenuItem ayuda_;
     private javax.swing.JMenuItem acerca_de;
     private javax.swing.JMenuItem lista_proyectos;
-    private javax.swing.JMenuItem tareas;
+    private javax.swing.JMenuItem tareasMenu;
     private javax.swing.JMenuBar menu;
     private javax.swing.JMenu menu_ayuda;
     private javax.swing.JMenu menu_crear;
